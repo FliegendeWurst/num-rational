@@ -16,6 +16,7 @@
 
 #![doc(html_root_url = "https://docs.rs/num-rational/0.2")]
 #![no_std]
+#![feature(const_fn)]
 
 #[cfg(feature = "bigint")]
 extern crate num_bigint as bigint;
@@ -71,7 +72,7 @@ pub type BigRational = Ratio<BigInt>;
 impl<T: Clone + Integer> Ratio<T> {
     /// Creates a new `Ratio`. Fails if `denom` is zero.
     #[inline]
-    pub fn new(numer: T, denom: T) -> Ratio<T> {
+    pub const fn new(numer: T, denom: T) -> Ratio<T> {
         if denom.is_zero() {
             panic!("denominator == 0");
         }
