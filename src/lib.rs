@@ -72,7 +72,7 @@ pub type BigRational = Ratio<BigInt>;
 impl<T: Clone + Integer> Ratio<T> {
     /// Creates a new `Ratio`. Fails if `denom` is zero.
     #[inline]
-    pub const fn new(numer: T, denom: T) -> Ratio<T> {
+    pub fn new(numer: T, denom: T) -> Ratio<T> {
         if denom.is_zero() {
             panic!("denominator == 0");
         }
@@ -89,7 +89,7 @@ impl<T: Clone + Integer> Ratio<T> {
 
     /// Creates a `Ratio` without checking for `denom == 0` or reducing.
     #[inline]
-    pub fn new_raw(numer: T, denom: T) -> Ratio<T> {
+    pub const fn new_raw(numer: T, denom: T) -> Ratio<T> {
         Ratio {
             numer: numer,
             denom: denom,
